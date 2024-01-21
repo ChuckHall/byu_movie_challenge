@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const app = express();
 const port = 3000;
-const RESULTS = 5;
+const MOVIE_LIMIT = 10;
 
 // Extract the TMDB key from properties.txt
 const filePath = "properties.txt";
@@ -25,7 +25,7 @@ app.get("/movies", (req, res) => {
     .then((res) => res.json())
     .then(function (json) {
       const output = [];
-      for (let i = 0; i < RESULTS; i++) {
+      for (let i = 0; i < MOVIE_LIMIT; i++) {
         let movie = {};
         movie.movie_id = json["results"][i].id;
         movie.title = json["results"][i].original_title;
