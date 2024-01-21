@@ -2,11 +2,11 @@ const express = require("express");
 const fs = require("fs");
 
 const app = express();
-const port = 3000;
+const port = 4000;
 const MOVIE_LIMIT = 10;
 
 // Extract the TMDB key from properties.txt
-const filePath = "properties.txt";
+const filePath = "../properties.txt";
 const fileContent = fs.readFileSync(filePath, "utf8");
 const KEY = fileContent.split("=")[1].trim();
 

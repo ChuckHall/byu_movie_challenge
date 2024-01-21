@@ -1,0 +1,13 @@
+{
+  "name": "webapp",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "axios": "^1.6.5",
+    "nuxt": "^3.9.3"
+  }
+}
