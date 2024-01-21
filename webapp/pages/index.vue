@@ -1,27 +1,67 @@
 <template>
   <div>
-    <h1>My Page</h1>
-    <ul>
-      <li v-for="item in apiResults" :key="item.id">{{ item.title }}</li>
-    </ul>
+    <div class="search-bar">
+      <input v-model="searchTerm" type="text" placeholder="Search" />
+      <button @click="search">Submit</button>
+    </div>
+
+    <div class="image-container">
+      <div v-for="movie in movies" :key="movie.movie_id" class="movie-item">
+        <img :src="movie.poster_img_url" alt="Movie Poster" />
+        <p>{{ movie.title }}</p>
+        <p>{{ movie.popularity_summary }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  async fetch() {
-    // Make a REST API query using fetch (or Axios)
-    const response = await fetch("http://localhost:4000/movies?search=boats");
-    const data = await response.json();
-    console.log(data);
+<script setup>
+import { ref } from "vue";
 
-    // Set the data to be used in the template
-    this.apiResults = data;
-  },
-  data() {
-    return {
-      apiResults: [],
-    };
-  },
-};
+const searchTerm = ref("");
+const movies = ref([]);
+
+async function search() {
+  try {
+    const url = `http://localhost:4000/movies?search=${searchTerm}`;
+    const response = await $fetch(url);
+
+    if (response.ok) {
+      movies.value = response.data;
+      const fs = require("fs");
+      fs.writeFileSync("output.txt", response.data, "utf-8");
+    } else {
+      console.error("Error fetching data:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+  }
+}
 </script>
+
+<style scoped>
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie-item {
+  margin: 10px;
+  text-align: center;
+}
+
+.movie-item img {
+  width: 150px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.movie-item p {
+  margin-top: 5px;
+}
+</style>
