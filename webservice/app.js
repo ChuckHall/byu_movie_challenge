@@ -11,6 +11,8 @@ const fileContent = fs.readFileSync(filePath, "utf8");
 const KEY = fileContent.split("=")[1].trim();
 
 app.get("/movies", (req, res) => {
+  console.log(req.url);
+
   const { search } = req.query;
   const url = `https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=en-US&page=1`;
   const options = {
@@ -39,5 +41,5 @@ app.get("/movies", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on https://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

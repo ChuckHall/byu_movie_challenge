@@ -1,0 +1,16 @@
+STEPS TO RUN THE BACKEND AND FRONTEND
+
+1. From the command line, go into the webservice directory
+   1a) Run: npm install
+   1b) Run: node app.js
+   This will start up the backend webservice which will be listening on localhost:4000
+2. From the command line, go into the webapp directory
+   2a) Run: npm install
+   2b) Run: npm run dev
+   This will start up the frontend app which will be listening on localhost:3000
+3. In a browser go to: http://localhost:3000
+
+I've worked very little with NodeJS and not at all with Vue/Nuxt. I was able to get the
+backend working in about half the time, but I'm getting stuck on the frontend. I see the
+request coming in to the backend when I click the submit button, but I can't figure out
+how to get the results to show up in the front end.

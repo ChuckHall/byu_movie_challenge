@@ -6,6 +6,7 @@
     </div>
 
     <div class="image-container">
+      <h3>Search Results</h3>
       <div v-for="movie in movies" :key="movie.movie_id" class="movie-item">
         <img :src="movie.poster_img_url" alt="Movie Poster" />
         <p>{{ movie.title }}</p>
@@ -23,7 +24,8 @@ const movies = ref([]);
 
 async function search() {
   try {
-    const url = `http://localhost:4000/movies?search=${searchTerm}`;
+    // const url = `http://localhost:4000/movies?search=${searchTerm}`;
+    const url = `http://localhost:4000/movies?search=boats`;
     const response = await $fetch(url);
 
     if (response.ok) {
